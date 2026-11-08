@@ -75,6 +75,7 @@ button { cursor: pointer; border: 0; }
 .fine { color: var(--muted); font-size: 13px; text-align: center; }
 .notice { display: grid; gap: 16px; text-align: center; max-width: 360px; }
 
+.admin-link { display: flex; margin-top: 24px; font-size: 15px; }
 .mine { margin-top: 24px; color: #fff; display: grid; gap: 8px; }
 .mine h2 { font-size: 15px; color: var(--gold); }
 .mine a { display: flex; align-items: center; gap: 10px; padding: 13px 14px; background: rgba(255, 255, 255, .09); border-radius: 12px; font-weight: 700; overflow-wrap: anywhere; }

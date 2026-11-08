@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, CalendarDays, LoaderCircle, MapPin, Ticket } from 'lucide-react';
+import { ArrowRight, CalendarDays, LoaderCircle, LockKeyhole, MapPin, Ticket } from 'lucide-react';
 import { ApiError, registerGuest, saveTicket, savedTickets } from '../lib/api';
 import { EVENT, eventWhen, eventWhere } from '../event.config';
 
@@ -74,6 +74,8 @@ export default function RegisterPage() {
           ))}
         </section>
       )}
+
+      <Link className="ghost admin-link" to="/admin"><LockKeyhole size={18} />Iniciar sesión como administrador</Link>
     </main>
   );
 }
