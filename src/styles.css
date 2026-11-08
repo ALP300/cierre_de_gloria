@@ -52,6 +52,12 @@ button { cursor: pointer; border: 0; }
 .facts svg { flex: none; color: var(--gold); }
 .facts.dark { color: var(--ink); margin-top: 14px; }
 .facts.dark svg { color: var(--flame-deep); }
+.facts .place { align-items: flex-start; }
+.facts .place svg { margin-top: 3px; }
+.facts small { display: block; font-size: 14px; font-weight: 600; opacity: .82; }
+.facts .map-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1.5px solid var(--gold); color: var(--gold); font-size: 15px; font-weight: 800; }
+.facts .map-link svg { color: inherit; }
+.facts.dark .map-link { border-color: var(--flame-deep); color: #a63f00; }
 
 .card { background: #fff; border-radius: 22px; padding: 22px 18px; }
 .form { display: grid; gap: 16px; }

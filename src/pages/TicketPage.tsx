@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import QRCode from 'qrcode';
-import { CalendarDays, Check, Copy, Download, LoaderCircle, MapPin, Plus } from 'lucide-react';
+import { Check, Copy, Download, LoaderCircle, Plus } from 'lucide-react';
+import EventFacts from '../components/EventFacts';
 import { ApiError, fetchTicket, PublicTicket } from '../lib/api';
-import { EVENT, eventWhen, eventWhere } from '../event.config';
+import { EVENT } from '../event.config';
 
 export default function TicketPage() {
   const { token = '' } = useParams();
@@ -73,10 +74,7 @@ export default function TicketPage() {
         <section className="ticket-body">
           <p className="overline">Entrada a nombre de</p>
           <p className="guest">{ticket.fullName}</p>
-          <ul className="facts dark">
-            <li><CalendarDays size={18} />{eventWhen()}</li>
-            <li><MapPin size={18} />{eventWhere()}</li>
-          </ul>
+          <EventFacts dark />
         </section>
         <div className="perforation" />
         <section className="ticket-stub">

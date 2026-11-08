@@ -1,6 +1,6 @@
 import QRCode from 'qrcode';
 import { PDFDocument, rgb } from 'pdf-lib';
-import { EVENT, eventWhen, eventWhere } from '../event.config';
+import { EVENT } from '../event.config';
 
 const W = 1500;
 const H = 2500;
@@ -252,14 +252,20 @@ function paintGuest(ctx: Ctx, fullName: string) {
   }
 
   const column = (W - SIDE * 2 - 40) / 2;
-  const facts: Array<[string, string, number]> = [['CUÁNDO', eventWhen(), SIDE], ['DÓNDE', eventWhere(), SIDE + column + 40]];
-  for (const [label, value, x] of facts) {
+  const facts: Array<[string, string, string, number]> = [
+    ['CUÁNDO', EVENT.date, EVENT.time, SIDE],
+    ['DÓNDE', EVENT.place, EVENT.address, SIDE + column + 40],
+  ];
+  for (const [label, main, detail, x] of facts) {
     ctx.fillStyle = GOLD;
     ctx.font = manrope(800)(26);
-    ctx.fillText(label, x, 1454);
+    ctx.fillText(label, x, 1442);
     ctx.fillStyle = '#fff';
-    fitFont(ctx, value, manrope(700), 40, 22, column);
-    ctx.fillText(value, x, 1504);
+    fitFont(ctx, main, manrope(700), 40, 22, column);
+    ctx.fillText(main, x, 1488);
+    ctx.fillStyle = '#d7dded';
+    fitFont(ctx, detail, manrope(700), 30, 18, column);
+    ctx.fillText(detail, x, 1528);
   }
 }
 

@@ -1,8 +1,9 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, CalendarDays, LoaderCircle, LockKeyhole, MapPin, Ticket } from 'lucide-react';
+import { ArrowRight, LoaderCircle, LockKeyhole, Ticket } from 'lucide-react';
+import EventFacts from '../components/EventFacts';
 import { ApiError, registerGuest, saveTicket, savedTickets } from '../lib/api';
-import { EVENT, eventWhen, eventWhere } from '../event.config';
+import { EVENT } from '../event.config';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -39,10 +40,7 @@ export default function RegisterPage() {
         </div>
         <h1 className="event-title">Cierre de <em>Gloria</em></h1>
         <p className="lead">El congreso que no te puedes perder. Entrada gratuita: registra tu nombre y llévate tu ticket.</p>
-        <ul className="facts">
-          <li><CalendarDays size={18} />{eventWhen()}</li>
-          <li><MapPin size={18} />{eventWhere()}</li>
-        </ul>
+        <EventFacts />
       </div>
 
       <form className="card form" onSubmit={submit}>
