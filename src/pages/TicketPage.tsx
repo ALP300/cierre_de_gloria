@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import QRCode from 'qrcode';
 import { CalendarDays, Check, Copy, Download, LoaderCircle, MapPin, Plus } from 'lucide-react';
 import { ApiError, fetchTicket, PublicTicket } from '../lib/api';
-import { buildTicketImage } from '../lib/ticketImage';
 import { EVENT, eventWhen, eventWhere } from '../event.config';
 
 export default function TicketPage() {
@@ -27,15 +26,16 @@ export default function TicketPage() {
     setSaving(true);
     setError('');
     try {
-      const blob = await buildTicketImage(ticket.fullName, ticket.ticketCode, link);
+      const { buildTicketPdf } = await import('../lib/ticketPdf');
+      const blob = await buildTicketPdf(ticket.fullName, ticket.ticketCode, link);
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement('a');
       anchor.href = url;
-      anchor.download = `ticket-cierre-de-gloria-${ticket.ticketCode}.png`;
+      anchor.download = `ticket-cierre-de-gloria-${ticket.ticketCode}.pdf`;
       anchor.click();
       setTimeout(() => URL.revokeObjectURL(url), 10_000);
     } catch {
-      setError('No se pudo crear la imagen. Toma una captura de pantalla de tu ticket.');
+      setError('No se pudo crear el PDF. Toma una captura de pantalla de tu ticket.');
     }
     setSaving(false);
   }
@@ -46,7 +46,7 @@ export default function TicketPage() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setError('No se pudo copiar. Guarda la imagen del ticket.');
+      setError('No se pudo copiar. Descarga el PDF del ticket.');
     }
   }
 
@@ -91,7 +91,7 @@ export default function TicketPage() {
       {error && <p className="error on-dark" role="alert">{error}</p>}
       <div className="actions">
         <button className="primary" onClick={download} disabled={saving}>
-          {saving ? <LoaderCircle className="spin" size={20} /> : <Download size={20} />}Descargar
+          {saving ? <LoaderCircle className="spin" size={20} /> : <Download size={20} />}Descargar PDF
         </button>
         <button className="ghost" onClick={copy}>
           {copied ? <Check size={20} /> : <Copy size={20} />}{copied ? 'Enlace copiado' : 'Copiar enlace'}
