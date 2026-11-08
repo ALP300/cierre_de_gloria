@@ -3,8 +3,8 @@
 export const EVENT = {
   name: 'Cierre de Gloria',
   organizer: 'Jesús el Buen Camino',
-  date: '', // Ejemplo de formato: 'Sábado 20 de diciembre'
-  time: '', // Ejemplo de formato: '6:00 p. m.'
+  date: '5 de diciembre',
+  time: '6:00 p. m. a 10:00 p. m.',
   place: '', // Nombre del local y dirección
 };
 
