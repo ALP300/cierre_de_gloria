@@ -83,8 +83,8 @@ export const registerGuest = (fullName: string, phone: string, website: string) 
 export const fetchTicket = (token: string) =>
   request<PublicTicket>(`/tickets/${encodeURIComponent(token)}`);
 
-export async function login(password: string) {
-  const { session } = await post<{ session: string }>('/staff/login', { password });
+export async function login(email: string, password: string) {
+  const { session } = await post<{ session: string }>('/staff/login', { email, password });
   store.set(SESSION_KEY, session);
 }
 
